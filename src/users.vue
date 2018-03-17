@@ -2,7 +2,7 @@
     <div id="users">
         <h3>Register here- test</h3>
         <hr>
-        <div class="row" v-for="user in users">
+        <div class="row" v-for="user in unregistredUsers">
             <h4>{{ user.name }}</h4>
             <button @click="registerUser(user)">Register</button>
         </div>
@@ -10,16 +10,16 @@
 </template>
 
 <script>
-    import {REGISTRATION_REGISTER} from './vuex/mutation-types';
+    import {REGISTRATION_CREATE} from './vuex/mutation-types';
     export default {
         computed: {
-            users() {
-                return this.$store.getters.users;
+            unregistredUsers() {
+                return this.$store.getters.unregistratedUsers;
             }
         },
         methods: {
             registerUser(user) {
-                this.$store.dispatch(REGISTRATION_REGISTER, user);
+                this.$store.dispatch(REGISTRATION_CREATE, user);
             }
         }
     }

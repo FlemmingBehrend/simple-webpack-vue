@@ -1,4 +1,4 @@
-import {REGISTRATION_REGISTER, REGISTRATION_UNREGISTER, USER_UNREGISTRED} from "../mutation-types";
+import {REGISTRATION_CREATE, REGISTRATION_DELETE, USER_UNREGISTRED} from "../mutation-types";
 
 const state = {
     registrations: [],
@@ -14,19 +14,19 @@ const getters = {
 };
 
 const mutations = {
-    [REGISTRATION_UNREGISTER](state, registration) {
+    [REGISTRATION_DELETE](state, registration) {
         state.registrations.splice(state.registrations.indexOf(registration), 1);
     },
-    [REGISTRATION_REGISTER](state, user) {
+    [REGISTRATION_CREATE](state, user) {
         const date = new Date;
         state.registrations.push({userId: user.id, name: user.name, date: date.getMonth() + '/' + date.getDay()})
     },
 };
 
 const actions = {
-    [REGISTRATION_UNREGISTER]({commit}, registration) {
+    [REGISTRATION_DELETE]({commit}, registration) {
         setTimeout(() => {
-            commit(REGISTRATION_UNREGISTER, registration);
+            commit(REGISTRATION_DELETE, registration);
             commit(USER_UNREGISTRED, registration.userId);
         }, 500);
     }

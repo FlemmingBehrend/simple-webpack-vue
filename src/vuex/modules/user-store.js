@@ -1,4 +1,4 @@
-import {REGISTRATION_REGISTER, USER_REGISTRED, USER_UNREGISTRED} from "../mutation-types";
+import {REGISTRATION_CREATE, USER_REGISTRED, USER_UNREGISTRED} from "../mutation-types";
 
 const state = {
     users: [
@@ -10,33 +10,34 @@ const state = {
 };
 
 const getters = {
-    users(state) {
+    unregistratedUsers(state) {
         return state.users.filter(user => !user.registered);
-    },
-    findUser(id) {
-        return state.users.find(user => user.id === id);
     }
 };
 
 const mutations = {
     [USER_UNREGISTRED](state, userId) {
-        const user = getters.findUser(userId);
+        const user = findUser(userId);
         user.registered = false;
     },
     [USER_REGISTRED](state, userId) {
-        let user = getters.findUser(userId);
+        let user = findUser(userId);
         user.registered = true;
     }
 };
 
 const actions = {
-    [REGISTRATION_REGISTER]({commit}, user) {
+    [REGISTRATION_CREATE]({commit}, user) {
         setTimeout(() => {
-            commit(REGISTRATION_REGISTER, user);
+            commit(REGISTRATION_CREATE, user);
             commit(USER_REGISTRED, user.id);
         }, 1000);
     },
 };
+
+function findUser(id) {
+    return state.users.find(user => user.id === id);
+}
 
 export default {
     state,
