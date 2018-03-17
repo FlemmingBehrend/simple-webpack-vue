@@ -10,8 +10,7 @@
 </template>
 
 <script>
-    import {REGISTER_USER} from './mutation-types';
-
+    import {REGISTRATION_REGISTER} from './vuex/mutation-types';
     export default {
         computed: {
             users() {
@@ -20,7 +19,7 @@
         },
         methods: {
             registerUser(user) {
-                this.$store.dispatch(REGISTER_USER, user);
+                this.$store.dispatch(REGISTRATION_REGISTER, user);
             }
         }
     }

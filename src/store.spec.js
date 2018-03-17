@@ -1,4 +1,4 @@
-const cut = require('./store');
+const cut = require('./vuex/store');
 
 describe('store', () => {
 
