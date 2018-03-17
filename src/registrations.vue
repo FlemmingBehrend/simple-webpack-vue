@@ -14,6 +14,8 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+
     export default {
         methods: {
             unregister: function(registration) {
@@ -21,12 +23,10 @@
             }
         },
         computed: {
-            total() {
-                return this.$store.getters.total;
-            },
-            registrations() {
-                return this.$store.getters.registrations;
-            }
+            ...mapGetters({
+                registrations: 'registrations',
+                total: 'total'
+            })
         }
     }
 </script>
