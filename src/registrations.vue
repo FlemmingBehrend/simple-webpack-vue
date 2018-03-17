@@ -15,11 +15,12 @@
 
 <script>
     import {mapGetters} from 'vuex';
+    import {UNREGISTER_USER} from './mutation-types';
 
     export default {
         methods: {
             unregister: function(registration) {
-                this.$store.commit('unregister', registration);
+                this.$store.dispatch(UNREGISTER_USER, registration);
             }
         },
         computed: {

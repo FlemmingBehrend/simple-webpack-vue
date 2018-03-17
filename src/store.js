@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {REGISTER_USER, UNREGISTER_USER} from "./mutation-types";
 
 Vue.use(Vuex);
 
@@ -25,15 +26,27 @@ const store = new Vuex.Store({
         }
     },
     mutations: {
-        register(state, user) {
+        [REGISTER_USER](state, user) {
             const date = new Date;
             user.registered = true;
             state.registrations.push({userId: user.id, name: user.name, date: date.getMonth() + '/' + date.getDay()})
         },
-        unregister(state, registration) {
+        [UNREGISTER_USER](state, registration) {
             let user = state.users.find(user => user.id === registration.userId);
             user.registered = false;
             state.registrations.splice(state.registrations.indexOf(registration), 1);
+        }
+    },
+    actions: {
+        [REGISTER_USER]({commit}, user) {
+            setTimeout(() => {
+                commit(REGISTER_USER, user);
+            }, 1000);
+        },
+        [UNREGISTER_USER]({commit}, registration) {
+            setTimeout(() => {
+                commit(UNREGISTER_USER, registration);
+            }, 500);
         }
     }
 });

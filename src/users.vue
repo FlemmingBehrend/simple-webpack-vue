@@ -10,6 +10,8 @@
 </template>
 
 <script>
+    import {REGISTER_USER} from './mutation-types';
+
     export default {
         computed: {
             users() {
@@ -18,7 +20,7 @@
         },
         methods: {
             registerUser(user) {
-                this.$store.commit('register', user);
+                this.$store.dispatch(REGISTER_USER, user);
             }
         }
     }
