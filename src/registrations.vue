@@ -17,24 +17,15 @@
     export default {
         methods: {
             unregister: function(registration) {
-                const user = this.$store.state.users.find(user => {
-                    return user.id === registration.userId;
-                });
-                user.registered = false;
-                this.$store.state.registrations.splice(this.registrations.indexOf(registration), 1);
+                this.$store.commit('unregister', registration);
             }
         },
         computed: {
             total() {
-                let total2 = this.$store.getters.total;
-                console.log('total:', total2);
-                return total2;
+                return this.$store.getters.total;
             },
             registrations() {
-                let registrations2 = this.$store.getters.registrations;
-                console.log('registrations: ', registrations2);
-
-                return registrations2;
+                return this.$store.getters.registrations;
             }
         }
     }
