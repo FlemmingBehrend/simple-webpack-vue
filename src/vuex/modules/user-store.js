@@ -17,12 +17,10 @@ const getters = {
 
 const mutations = {
     [USER_UNREGISTRED](state, userId) {
-        const user = findUser(userId);
-        user.registered = false;
+        state.users.find(user => user.id === userId).registered = false;
     },
     [USER_REGISTRED](state, userId) {
-        let user = findUser(userId);
-        user.registered = true;
+        state.users.find(user => user.id === userId).registered = true;
     }
 };
 
@@ -34,10 +32,6 @@ const actions = {
         }, 1000);
     },
 };
-
-function findUser(id) {
-    return state.users.find(user => user.id === id);
-}
 
 export default {
     state,

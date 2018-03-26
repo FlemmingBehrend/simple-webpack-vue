@@ -1,25 +1,20 @@
 <template>
     <div id="users">
-        <h3>Register here- test</h3>
+        <h3>Register here</h3>
         <hr>
-        <div class="row" v-for="user in unregistredUsers">
+        <div class="row" v-for="user in unregistreredUsers">
             <h4>{{ user.name }}</h4>
-            <button @click="registerUser(user)">Register</button>
+            <button @click="fireRegisterUser(user)">Register</button>
         </div>
     </div>
 </template>
 
 <script>
-    import {REGISTRATION_CREATE} from './vuex/mutation-types';
     export default {
-        computed: {
-            unregistredUsers() {
-                return this.$store.getters.unregistratedUsers;
-            }
-        },
+        props: ['unregistreredUsers'],
         methods: {
-            registerUser(user) {
-                this.$store.dispatch(REGISTRATION_CREATE, user);
+            fireRegisterUser(user) {
+                this.$emit('registerUser', user);
             }
         }
     }

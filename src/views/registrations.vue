@@ -7,27 +7,19 @@
         <hr>
         <div class="row" v-for="registration in registrations">
             <h4>{{ registration.name }}</h4>
-            <span @click="unregister(registration)">(Unregister)</span>
+            <span @click="fireUnregister(registration)">(Unregister)</span>
             <div class="date">{{ registration.date }}</div>
         </div>
     </div>
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
-    import {REGISTRATION_DELETE} from './vuex/mutation-types';
-
     export default {
+        props: ['registrations', 'total'],
         methods: {
-            unregister: function(registration) {
-                this.$store.dispatch(REGISTRATION_DELETE, registration);
+            fireUnregister(registration) {
+                this.$emit('unregister', registration);
             }
-        },
-        computed: {
-            ...mapGetters({
-                registrations: 'registrations',
-                total: 'total'
-            })
         }
     }
 </script>

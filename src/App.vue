@@ -1,18 +1,18 @@
 <template>
     <div id="app">
-        <users></users>
-        <registrations></registrations>
+        <unregestered-users-container></unregestered-users-container>
+        <registrations-container></registrations-container>
     </div>
 </template>
 
 <script>
-    import users from './users.vue';
-    import registrations from './registrations.vue';
+    import unregesteredUsersContainer from './containers/unregistered-users-container';
+    import registrationsContainer from './containers/registrations-container.vue';
 
     export default {
         components: {
-            users,
-            registrations
+            unregesteredUsersContainer,
+            registrationsContainer
         }
     }
 </script>
